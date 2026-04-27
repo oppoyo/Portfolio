@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    vertical-align: bottom;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    opacity: 0.9;
+}
+
+ul,
+ol {
+    list-style-type: none;
+}
+
+// px→rem
+@function rem( $px, $base:16 ) {
+    @return $px / $base * 1rem;
+}
+
+// メディアクエリー
+$pc: 769px;
+
+@mixin pc {
+    @media (min-width:($pc)) {
+        @content;
+    }
+}

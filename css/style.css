@@ -1,0 +1,844 @@
+@charset "utf-8";
+
+/* ========================--
+　↓　共通設定
+======================== */
+
+/* はみ出し確認用 */
+/* * {
+    border: 1px solid red; 
+} */
+
+html {
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
+    font-size: 100%;
+    color: #333;
+    scroll-behavior: smooth;
+    scroll-padding-top: 121px;
+
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    vertical-align: bottom;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    opacity: 0.6;
+}
+
+p {
+    font-size: 1rem;
+    /* ★要変更 */
+}
+
+.wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 30px;
+    /* ★要変更 */
+}
+
+@media (min-width: 950px) {
+    html {
+        scroll-padding-top: 115px;
+    }
+}
+
+/* ========================--
+　↑　共通設定
+======================== */
+
+
+/* 
+　↓　ローディング画面
+======================== */
+.loading {
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #fdfdfd;
+}
+
+.loading p {
+    text-align: center;
+    animation: loading 1.3s ease 0ms infinite alternate both;
+    font-family: 'Bellota Text', cursive;
+}
+
+.loading.hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s;
+}
+
+.loading .typing {
+    display: block;
+    position: relative;
+    height: 200px;
+    top: calc(30% - 20px);
+    width: 200px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+@keyframes loading {
+    0% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 
+　↑　ローディング画面
+======================== */
+
+
+.firstview_Box {
+    min-height: 100vh;
+    background-image: url(mikan.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+@media (min-width: 950px) {
+
+    .firstview_Box {
+        background-size: 62% auto;
+        background-position: bottom right;
+    }
+
+}
+
+/* 
+　　ヘッダー
+======================== */
+
+.base-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(333, 333, 333, 1);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    /* padding: 0 0 20px 0; */
+    z-index: 5000;
+}
+
+.base-head.isWhite {
+    background: rgba(333, 333, 333, 0.7);
+}
+
+
+
+/* 　サイトタイトル */
+.siteTitle {
+    margin: 10px 0 15px 15px;
+    font-family: 'Bellota Text', cursive;
+    line-height: 1em;
+    display: inline-block;
+}
+
+.sitetitle--small {
+    line-height: 0.8em;
+    font-size: 1rem;
+}
+
+
+@media (min-width: 950px) {
+
+    .siteTitle {
+        font-size: 4rem;
+        margin: 100px 0 15px 200px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        transition: 0.7s;
+    }
+
+    .sitetitle--small {
+        font-size: 2rem;
+    }
+
+    .siteTitle.isSmall {
+
+        font-size: 2rem;
+        margin: 10px 0 0 15px;
+        position: static;
+    }
+
+    .sitetitle--small.isSmall {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* グロナビ */
+
+
+
+/*========= ナビゲーションのためのCSS ===============*/
+
+#g-nav {
+    font-size: 1.6rem;
+    font-family: 'Bellota Text', cursive;
+    /*position:fixed;にし、z-indexの数値を小さくして最背面へ*/
+    position: fixed;
+    z-index: 6000;
+    opacity: 0;
+    /*はじめは透過0*/
+    /*ナビの位置と形状*/
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    visibility: hidden;
+    /*ナビの高さ*/
+    background: #fa9d41;
+    /*動き*/
+    transition: all 0.5s;
+}
+
+/*アクティブクラスがついたら透過なしにして最前面へ*/
+#g-nav.panelactive {
+    opacity: 1;
+    visibility: visible;
+    z-index: 7000;
+}
+
+/*ナビゲーション*/
+#g-nav ul {
+    display: none;
+    /*ナビゲーション天地中央揃え*/
+    position: absolute;
+    z-index: 8000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#g-nav.panelactive ul {
+    display: block;
+}
+
+/*リストのレイアウト設定*/
+#g-nav li {
+    text-align: center;
+    margin: 0 15px;
+}
+
+#g-nav li a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+}
+
+/*========= ボタンのためのCSS ===============*/
+.openbtn1 {
+    position: fixed;
+    z-index: 9999;
+    /*ボタンを最前面に*/
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+/*×に変化*/
+.openbtn1 span {
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #666;
+    width: 45%;
+}
+
+.openbtn1 span:nth-of-type(1) {
+    top: 15px;
+}
+
+.openbtn1 span:nth-of-type(2) {
+    top: 23px;
+}
+
+.openbtn1 span:nth-of-type(3) {
+    top: 31px;
+}
+
+.openbtn1.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+}
+
+.openbtn1.active span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.openbtn1.active span:nth-of-type(3) {
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+}
+
+
+@media (min-width: 950px) {
+    #g-nav {
+        display: flex;
+        height: 70px;
+        background: none;
+        opacity: 1;
+        visibility: visible;
+        z-index: 7000;
+        position: static;
+        justify-content: end;
+        margin-top: 20px;
+        transition: none;
+    }
+
+    #g-nav ul {
+        display: flex;
+        position: static;
+        transform: none;
+    }
+
+    #g-nav li a {
+        background: rgba(333, 333, 333, 1);
+    }
+
+    .openbtn1 {
+        display: none;
+    }
+}
+
+
+/* ========================--
+　↓　ファーストビュー
+======================== */
+
+
+/*　キービジュアル　*/
+
+
+/* 　キャッチコピー */
+
+h2 {
+    font-size: 1.7em;
+    text-align: center;
+    font-family: 'Bellota Text', cursive;
+}
+
+.catch {
+    writing-mode: vertical-rl;
+    margin-left: 25px;
+    position: absolute;
+    /* top: 40%; */
+    bottom: 10%;
+    left: 10%;
+}
+
+.catch__copy {
+    background: #f8f8f8;
+    border: #333;
+    margin-top: 180px;
+}
+
+.catch__copy h2 {
+    font-family: 'Zen Old Mincho', serif;
+}
+
+.catch__copy+.catch__copy {
+    margin-right: 5px;
+}
+
+@media (min-width: 950px) {
+
+    .catch {
+        /* writing-mode: unset; */
+        margin-top: 170px;
+        margin-left: 120px;
+    }
+
+    .catch__copy {
+        font-size: 1.3rem;
+        margin-top: 20px;
+    }
+}
+
+/* サークル文字回転用 */
+
+.circle {
+    position: absolute;
+    top: -130px;
+    left: -150px;
+    margin: 10px auto;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    z-index: 5000;
+}
+
+.inner {
+    width: 100px;
+    height: 20px;
+    border-radius: 70%;
+    animation: rotateAnim 90s linear infinite;
+}
+
+.text {
+    font-size: 8px;
+}
+
+span.circle__text {
+    position: absolute;
+    inset: 0;
+}
+
+.circle--none {
+    z-index: -1;
+}
+
+@keyframes rotateAnim {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (min-width: 950px) {
+    .circle {
+        top: 70px;
+        left: 130px;
+        margin: 20px auto;
+        width: 400px;
+        height: 200px;
+        transition: 0.8s;
+    }
+
+    .inner {
+        font-size: 4rem;
+        width: 800px;
+        height: 100px;
+        border-radius: 70%;
+        animation: rotateAnim 90s linear infinite;
+        transition: 0.8s;
+    }
+
+    .circle.isSmall {
+        position: fixed;
+        top: -130px;
+        left: -190px;
+        margin: 10px auto;
+        width: 500px;
+        height: 300px;
+    }
+
+    .inner.isSmall {
+        width: 250px;
+        height: 20px;
+    }
+}
+
+
+/* 
+ABOUT部分
+======================== */
+
+#about {
+    margin-top: 80px;
+    line-height: 1.7em;
+}
+
+.about__title {
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+/* あいさつ部分 */
+.philosophy {
+    font-size: 1rem;
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
+}
+
+.font_small {
+    margin: 20px 0 20px 0px;
+}
+
+.font_small p {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: gray;
+}
+
+.under_line {
+    background: linear-gradient(transparent 80%, #fa9d41 0%);
+}
+
+.typing_img {
+    text-align: right;
+    margin-bottom: 100px;
+}
+
+.typing_img img {
+    width: 150px;
+}
+
+
+
+.prof_phot {
+    text-align: center;
+}
+
+.prof_phot img {
+    max-width: 60%;
+    border-radius: 50%;
+}
+
+.myname {
+    /* color: #fa9d41; */
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
+}
+
+.prof_text p:first-of-type {
+    margin-top: 10px;
+}
+
+/* PC　レスポンシブ */
+@media (min-width: 950px) {
+
+    .about__title {
+        font-size: 50px;
+        margin: 200px 0 100px;
+    }
+
+    .typing_img img {
+        width: 300px;
+    }
+
+    .flex_box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .prof_textBox {
+        margin-left: 40px;
+    }
+
+    .prof_phot img {
+        max-width: 300px;
+    }
+}
+
+
+/* 
+WORKS部分
+======================== */
+
+.topWorks__title {
+    /* margin-top: 50px; */
+    margin-bottom: 50px;
+    font-size: 2rem;
+}
+
+.topWorks__item {
+    margin-bottom: 40px;
+    max-width: 100%;
+    padding-bottom: 10px;
+}
+
+.topWorks__textBox {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.topWorks__img img {
+    max-width: 100%;
+    height: auto;
+    /* border: 1px solid #333; */
+    /* border-radius: 7px; */
+    box-shadow: 2px 1px 13px rgb(210, 210, 210);
+    object-fit: cover;
+}
+
+.topWorks__item-title {
+    display: inline-block;
+    font-size: 18px;
+}
+
+.topCategory {
+    font-size: 12px;
+    display: inline-block;
+}
+
+.dot-web {
+    margin-right: 6px;
+    margin-left: 30px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #F9A57D;
+}
+
+.dot-banner {
+    margin-right: 6px;
+    margin-left: 30px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #74b5ff;
+}
+
+.dot-print {
+    margin-right: 6px;
+    margin-left: 30px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #90d77f;
+}
+
+.dot-others {
+    margin-right: 6px;
+    margin-left: 30px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #b79f94;
+}
+
+
+@media (min-width: 950px) {
+
+    .topWorks__title {
+        font-size: 50px;
+        margin: 70px 0 100px;
+    }
+
+    .topWorks__Box {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+        gap: 50px;
+    }
+
+    /* .topWorks__title {
+    margin-top: 100px;
+    margin-bottom: 30px;
+    } */
+
+    .topWorks__item {
+        max-width: 480px;
+        margin-bottom: 0;
+    }
+
+    .topWorks__img img {
+        max-width: 435px;
+    }
+
+    .topWorks__item-title {
+        font-size: 20px;
+    }
+
+    .topCategory {
+        font-size: 14px;
+    }
+}
+
+
+.button06 {
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 100px;
+}
+
+.button06 a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 250px;
+    margin: auto;
+    padding: 1rem 0;
+    font-weight: bold;
+    border: 2px solid #fa9d41;
+    color: #fa9d41;
+    transition: 0.5s;
+    border-radius: 100vw;
+}
+
+.button06 a:hover {
+    color: #fff;
+    background: #fa9d41;
+    opacity: 1;
+}
+
+
+i {
+    padding-left: 8px;
+}
+
+
+
+.pic--line {
+    min-width: 100%;
+    object-fit: cover;
+    height: 180px;
+    margin: 80px 0;
+}
+
+@media (min-width: 950px) {
+    .button06 a {
+        width: 400px;
+    }
+    
+    .displyNone {
+        display: none;
+    }
+    
+    .pic--line {
+        min-width: 100%;
+        object-fit: cover;
+        height: 250px;
+        margin: 120px 0;
+    }
+}
+
+
+
+
+
+/* 
+FOOTER部分
+======================== */
+
+footer {
+    /* ★要変更 */
+    text-align: center;
+    padding: 30px 0;
+}
+
+small {
+    /* ★要変更 */
+    display: inline-block;
+    margin-top: 15px;
+}
+
+
+
+
+#about::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #fa9d41;
+    margin: 0 auto 60px;
+}
+
+#password-screen {
+    position: fixed;
+    inset: 0;
+    background: #fdfdfd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.pw-box {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.pw-logo {
+    font-family: 'Bellota Text', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+
+.pw-label {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+#pw-input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    padding: 8px 4px;
+    font-size: 1rem;
+    text-align: center;
+    width: 200px;
+    background: transparent;
+}
+
+#pw-input:focus {
+    border-bottom-color: #fa9d41;
+}
+
+#pw-btn {
+    margin-top: 8px;
+    padding: 10px 40px;
+    background: none;
+    border: 1px solid #fa9d41;
+    color: #fa9d41;
+    font-family: 'Bellota Text', cursive;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    border-radius: 100vw;
+    transition: 0.3s;
+}
+
+#pw-btn:hover {
+    background: #fa9d41;
+    color: #fff;
+}
+
+#pw-error {
+    font-size: 0.8rem;
+    color: #e05;
+    min-height: 1em;
+}

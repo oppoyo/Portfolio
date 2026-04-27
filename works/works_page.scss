@@ -1,0 +1,323 @@
+@charset "utf-8";
+
+@use "common" as c;
+
+// // ヘッダー
+
+.base-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 120px;
+    /* padding: 0 0 20px 0; */
+    z-index: 5000;
+}
+
+/* サイトタイトル */
+.siteTitle.isSmall {
+    margin: 10px 0 15px 15px;
+    font-family: 'Bellota Text', cursive;
+    line-height: 1em;
+    display: inline-block;
+}
+
+.sitetitle--small {
+    line-height: 0.8em;
+    font-size: 1rem;
+}
+
+
+@media (min-width: 950px) {
+
+    // .siteTitle {
+    //     font-size: 4rem;
+    //     margin: 100px 0 15px 200px;
+    //     position: absolute;
+    //     top: 10px;
+    //     left: 10px;
+    //     transition: 0.7s;
+    // }
+
+    // .sitetitle--small {
+    //     font-size: 2rem;
+    // }
+
+    .base-head {
+        height: 105px;
+    }
+
+    .siteTitle.isSmall {
+
+        font-size: 2rem;
+        margin: 10px 0 0 15px;
+        position: static;
+    }
+
+    .sitetitle--small.isSmall {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* グロナビ */
+
+/*========= ナビゲーションのためのCSS ===============*/
+
+#g-nav {
+    font-family: 'Bellota Text', cursive;
+    font-size: 1.6rem;
+    /*position:fixed;にし、z-indexの数値を小さくして最背面へ*/
+    position: fixed;
+    z-index: 6000;
+    opacity: 0;
+    /*はじめは透過0*/
+    /*ナビの位置と形状*/
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    visibility: hidden;
+    /*ナビの高さ*/
+    background: #fa9d41;
+    /*動き*/
+    transition: all 0.5s;
+}
+
+/*アクティブクラスがついたら透過なしにして最前面へ*/
+#g-nav.panelactive {
+    opacity: 1;
+    visibility: visible;
+    z-index: 7000;
+}
+
+/*ナビゲーション*/
+#g-nav ul {
+    display: none;
+    /*ナビゲーション天地中央揃え*/
+    position: absolute;
+    z-index: 8000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#g-nav.panelactive ul {
+    display: block;
+}
+
+/*リストのレイアウト設定*/
+#g-nav li {
+    text-align: center;
+    margin: 0 15px;
+}
+
+#g-nav li a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+}
+
+/*========= ボタンのためのCSS ===============*/
+.openbtn1 {
+    position: fixed;
+    z-index: 9999;
+    /*ボタンを最前面に*/
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+/*×に変化*/
+.openbtn1 span {
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #666;
+    width: 45%;
+}
+
+.openbtn1 span:nth-of-type(1) {
+    top: 15px;
+}
+
+.openbtn1 span:nth-of-type(2) {
+    top: 23px;
+}
+
+.openbtn1 span:nth-of-type(3) {
+    top: 31px;
+}
+
+.openbtn1.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+}
+
+.openbtn1.active span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.openbtn1.active span:nth-of-type(3) {
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+}
+
+
+@media (min-width: 950px) {
+    #g-nav {
+        display: flex;
+        height: 70px;
+        background: #fff;
+        opacity: 1;
+        visibility: visible;
+        z-index: 7000;
+        position: static;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+    #g-nav ul {
+        display: flex;
+        position: static;
+
+        transform: none;
+    }
+
+    .openbtn1 {
+        display: none;
+    }
+}
+
+
+
+
+// ワークスぺーじ
+
+.works {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    align-items: center;
+    margin-top: 120px;
+
+    @include c.pc {
+        margin-top: 105px;
+    }
+
+
+    &__box {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px 30px;
+    }
+
+    &__title {
+        font-size: c.rem(26);
+        margin-top: 0.3rem;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    &__tag {
+        display: inline-block;
+        background-color: #6d6d6d;
+        color: #fff;
+        border-radius: 14px;
+        font-size: c.rem(12);
+        padding: 0.2rem 0.6rem;
+        margin-left: 15px;
+        vertical-align:text-top;
+    }
+
+    &__imgBox {
+        // max-width: 800px;
+        // height: 420px;
+        // background: rgb(167, 167, 167);
+        margin-top: 20px;
+        border: 1px solid rgb(188, 188, 188);
+        border-radius: 20px;
+
+    }
+
+    &__infoBox {
+
+        margin-top: 50px;
+
+        @include c.pc {
+            display: flex;
+        }
+
+    }
+
+    &__infoTitle {
+        display: block;
+        width: 28%;
+    }
+
+    &__text {
+        width: 90%;
+        font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", sans-serif;
+        margin-left: 10%;
+
+        @include c.pc {
+            margin-left: 0;
+        }
+    }
+}
+
+.imgBox--hover {
+    position: relative;
+    overflow: hidden;
+}
+
+.imgBox--hover p {
+    opacity: 0;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: c.rem(22);
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.6s ease;
+}
+
+.imgBox--hover p:hover {
+    opacity: 1; //この切替で表示非表示（表示状態）
+}
+
+
+// フッター
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+}
+
+small {
+    display: inline-block;
+    margin-top: 15px;
+}
